@@ -71,7 +71,7 @@ class Bird(pg.sprite.Sprite):
         self.speed = 10
         self.state = "normal"
         self.hyper_life = 0
-        self.life = 3  # こうかとんの初期体力
+        self.life = 10  # こうかとんの初期体力
 
     def change_img(self, num: int, screen: pg.Surface):
         """
@@ -154,11 +154,11 @@ class Bomb(pg.sprite.Sprite):
 
         self.speed = 6
         self.state="active"
-        if score.value >= 100:  # 得点に応じてスピードを変更
+        if score.value >= 300:  # 得点に応じてスピードを変更
             self.speed = 7 
-        if score.value >= 200:
+        if score.value >= 800:
             self.speed = 8
-        if score.value >= 300:
+        if score.value >= 1500:
             self.speed = 9 
 
     def update(self):
@@ -638,18 +638,18 @@ def main():
                             beams.add(beam)
             #EMP
             if event.type == pg.KEYDOWN and event.key == pg.K_e:
-                if score.value > 20:
+                if score.value > 1000:
                     EMP(emys, bombs, screen)
-                    score.value-=20
+                    score.value-=1000
             #重力場
             if event.type == pg.KEYDOWN and event.key == pg.K_RETURN:
-                if score.value >= 200:
-                    score.value -= 200
+                if score.value >= 500:
+                    score.value -= 500
                     gravitys.add(Gravity(400))
             #防御壁
             if event.type == pg.KEYDOWN and event.key == pg.K_v:
-                if score.value >= 50 and len(shields) == 0:
-                    score.value -= 50
+                if score.value >= 300 and len(shields) == 0:
+                    score.value -= 300
                     shields.add(Shield(bird, 400))
         screen.blit(bg_img, [0, 0])
 
